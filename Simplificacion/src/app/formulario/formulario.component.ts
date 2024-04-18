@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,HttpClientModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
@@ -17,20 +19,24 @@ import { FormsModule } from '@angular/forms';
 
 export class FormularioComponent {
 
+  constructor(private http: HttpClient) { }
+
   textInput: string = '';
   selectedOption: string = '';
-
-  //constructor(private _http: HttpClient) { }
+  respuesta: any="z";
 
  
 
   submitForm() {
-    /*this.http.post<any>('http://localhost:4200/', { 
+    this.http.post<any>('http://127.0.0.1:5000', { 
       textInput: this.textInput,
       selectedOption: this.selectedOption
     }).subscribe(response => {
-      // Manejar la respuesta del servidor si es necesario
-    });**/
+      alert(response.textInput)
+
+      this.respuesta = response;
+      
+    });
   }
 
 }

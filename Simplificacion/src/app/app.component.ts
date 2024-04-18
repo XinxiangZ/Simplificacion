@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { FormularioComponent } from './formulario/formulario.component';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
