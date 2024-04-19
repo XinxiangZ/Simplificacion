@@ -22,20 +22,23 @@ export class FormularioComponent {
   constructor(private http: HttpClient) { }
 
   textInput: string = '';
-  selectedOption: string = '';
+  selectedOption: string = 'Sintáctica';
   respuesta: any="z";
 
  
 
   submitForm() {
+
     this.http.post<any>('http://127.0.0.1:5000', { 
       textInput: this.textInput,
       selectedOption: this.selectedOption
     }).subscribe(response => {
-      console.log(response)
-      this.respuesta = response;
+
+      this.respuesta = response.generated_text;
   
     });
+
+    
   }
 
 }

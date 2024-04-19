@@ -2,9 +2,13 @@
 <form (ngSubmit)="submitForm()">
     <input type="text" [(ngModel)]="textInput" name="inputext">
     <select [(ngModel)]="selectedOption" name="option">
-      <option value="option1">Opción 1</option>
-      <option value="option2">Opción 2</option>
-
+      <option value="1">Sintáctica</option>
+      <option value="2">Léxica</option>
+      <option value="3">Resumen</option>
+      <option value="4">Sintáctica y Léxica</option>
+      <option value="5">Sintáctica y Resumen</option>
+      <option value="6">Léxica y Resumen</option>
+      <option value="7">Sintáctica, Léxica y Resumen</option>   
     </select>
     <button type="submit">Enviar</button>
   </form>
