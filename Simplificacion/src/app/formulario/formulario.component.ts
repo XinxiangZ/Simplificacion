@@ -32,7 +32,7 @@ export class FormularioComponent {
       textInput: this.textInput,
       selectedOption: this.selectedOption
     }).subscribe(response => {
-
+      console.log(response)
       this.respuesta = response;
   
     });

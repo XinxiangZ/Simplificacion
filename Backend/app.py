@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify,render_template
-from transformers import pipeline
 import requests
 
 
@@ -13,7 +12,7 @@ def query_mt5(payload):
 	
 
 def query_Clmt5(payload):
-    API_URL = "https://api-inference.huggingface.co/models/CLARA-MeD/mt5-simplification-spanish"
+    API_URL = "https://api-inference.huggingface.co/models/CLARA-MeD/mt5-small"
     headers = {"Authorization": "Bearer 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"}
     
     response = requests.post(API_URL, headers=headers, json=payload)
@@ -28,10 +27,6 @@ def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 	
-
-#pipe_mt5 = pipeline("text2text-generation", model="oskrmiguel/mt5-simplification-spanish", max_length = 100, num_beams = 4 )
-#pipe_clmt5 = pipeline("text2text-generation", model="CLARA-MeD/mt5-simplification-spanish", max_length = 100, num_beams = 4)
-#pipe_Cross = pipeline("summarization", model="csebuetnlp/mT5_m2m_crossSum", max_length=84,no_repeat_ngram_size=2,num_beams=4,decoder_start_token_id=250003)
 
 app = Flask(__name__)
 
@@ -75,7 +70,6 @@ def procesar_datos():
 
        
         respuesta = {'textInput': text_input, 'selectedOption': selected_option}
-        #print(respuesta)
 
         return jsonify(respuesta)
 
