@@ -29,7 +29,7 @@ export class FormularioComponent {
 
   submitForm() {
 
-    this.http.post<any>('http://laoxin.pythonanywhere.com/', { 
+    this.http.post<any>('https://laoxin.pythonanywhere.com/', { 
       textInput: this.textInput,
       selectedOption: this.selectedOption
     }).subscribe(response => {
