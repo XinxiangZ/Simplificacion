@@ -53,6 +53,7 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
+             respuesta = output[0]
                   
         elif selected_option=="2":
             
@@ -60,6 +61,7 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
+             respuesta = output[0]
         
         elif selected_option=="3":
             
@@ -67,18 +69,24 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
             })
+            respuesta = {"generated_text": output[0]["summary_text"]}
+            
             
         elif selected_option=="4":
             
             output1 = query_mt5({
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
-            })
+            }) 
+            
             
             output = query_Clmt5({
-	        "inputs": output1[0].generated_text,
+	        "inputs": output1[0]["generated_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
+            
+            
+            respuesta = output[0]
         
             
         elif selected_option=="5":
@@ -88,11 +96,13 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
             })
-            
+
             output = query_mt5({
-	        "inputs": output1[0].generated_text,
+	        "inputs": output1[0]["summary_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
+
+            respuesta = output[0]
             
         elif selected_option=="6":
             
@@ -102,9 +112,10 @@ def procesar_datos():
             })
              
             output = query_Clmt5({
-	        "inputs": output1[0].generated_text,
+	        "inputs": output1[0]["summary_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
+            respuesta = output[0]
                 
         elif selected_option=="7":
             
@@ -114,18 +125,18 @@ def procesar_datos():
             })
             
             output2 = query_mt5({
-	        "inputs": output1[0].generated_text,
+	        "inputs": output1[0]["summary_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
             
             output = query_Clmt5({
-	        "inputs": output2[0].generated_text,
+	        "inputs": output2[0]["generated_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
-            
+            respuesta = output[0]
 
        
-        respuesta = output[0]
+        
 
         return jsonify(respuesta)
 
