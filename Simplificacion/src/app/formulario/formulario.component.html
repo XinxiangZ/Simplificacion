@@ -1,16 +1,30 @@
-<h1>Simplificación textual</h1>
-<form (ngSubmit)="submitForm()">
-    <input type="text" [(ngModel)]="textInput" name="inputext">
-    <select [(ngModel)]="selectedOption" name="option">
-      <option value="1">Sintáctica</option>
-      <option value="2">Léxica</option>
-      <option value="3">Resumen</option>
-      <option value="4">Sintáctica y Léxica</option>
-      <option value="5">Sintáctica y Resumen</option>
-      <option value="6">Léxica y Resumen</option>
-      <option value="7">Sintáctica, Léxica y Resumen</option>   
-    </select>
-    <button type="submit">Enviar</button>
-  </form>
-  
-  <p>{{respuesta}}</p>
+<div class="container">
+  <header>
+    <h1>Google Translate</h1>
+  </header>
+  <main>
+    <div class="input-area">
+      <h1>Simplificación textual</h1>
+        <form (ngSubmit)="submitForm()">
+          <textarea type="text" [(ngModel)]="textInput" placeholder="Enter text to translate..." name="inputext"></textarea>
+          <label>
+            <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" value="1"> Sintáctica
+          </label>
+          <label>
+            <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" value="2"> Léxica
+          </label>
+          <label>
+            <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" value="3"> Resumen
+          </label>
+          <button type="submit">Enviar</button>
+        </form>
+
+        <p>{{respuesta}}</p>
+    </div>
+    <div class="output-area">
+      <textarea id="translated-text" readonly></textarea>
+    </div>
+  </main>
+</div>
+
+

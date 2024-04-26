@@ -22,8 +22,11 @@ export class FormularioComponent {
   constructor(private http: HttpClient) { }
 
   textInput: string = '';
-  selectedOption: string = 'Sintáctica';
-  respuesta: any="z";
+  selectedOptionSintactica: string = '';
+  selectedOptionLexica: string = '';
+  selectedOptionResumen: string = '';
+  
+  respuesta: any="";
 
  
 
@@ -31,7 +34,9 @@ export class FormularioComponent {
 
     this.http.post<any>('https://laoxin.pythonanywhere.com/', { 
       textInput: this.textInput,
-      selectedOption: this.selectedOption
+      selectedOptionSintactica: this.selectedOptionSintactica,
+      selectedOptionLexica: this.selectedOptionLexica,
+      selectedOptionResumen: this.selectedOptionResumen
     }).subscribe(response => {
 
       this.respuesta = response.generated_text;
