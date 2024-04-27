@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , Input, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormsModule } from '@angular/forms';
@@ -28,7 +28,8 @@ export class FormularioComponent {
   
   respuesta: any="";
 
- 
+  letterCount: number = 0;
+  isLimitReached: boolean = false;
 
   submitForm() {
 
@@ -42,8 +43,13 @@ export class FormularioComponent {
       this.respuesta = response.generated_text;
   
     });
-
-    
   }
 
+  countWords() {
+    // Split the text by spaces to count letters
+    this.letterCount = this.textInput.length;
+
+    // Check if letter count exceeds the limit
+    this.isLimitReached = this.letterCount > 5000;
+  }
 }

@@ -1,17 +1,48 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Quattrocento-Sans';
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }
   
+  #topbar {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ddd;
+  }
+
+  #barra {
+    position: fixed;
+    box-shadow: 0 0 16px #454545;
+    top: 0;
+    height: 20px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: #D9DADB; /* fondo claro*/
+    background-color: #454545; /* fondo oscuro*/
+    font-family: "NotoSans";
+    font-size:0.75em;
+  }
+
   .container {
-    max-width: 800px;
+    max-width: 90%;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; Adjust to center or flex-end if needed */
+    flex-flow: row nowrap;
   }
   
   header {
@@ -29,30 +60,53 @@ body {
   
   .input-area,
   .output-area {
-    margin-bottom: 10px;
+    width: 45%;
+    padding: 15px;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+  }
+  
+  .textarea-container {
+    position: relative;
   }
   
   textarea {
-    width: 100%;
-    padding: 10px;
+    width: 95%;
     border: 1px solid #ccc;
-    border-radius: 5px;
     resize: vertical;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
   }
   
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+  .word-count {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 3px 8px;
     border-radius: 5px;
+  }
+
+  button {
+    background: #818181;
+    background-image: linear-gradient(to top, #454545, #818181);
+    border: 0;
+    display: inline-table;
+    margin-top: 1%;
     cursor: pointer;
+    color: #fff;
+    box-shadow: 0 1px 1px #555 inset;
+    padding: 0.3em 0.9em;
+    font-size: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-weight: normal;
+    text-decoration: none;
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: #818181;
   }
   
   button:focus {

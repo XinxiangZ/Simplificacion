@@ -1,30 +1,52 @@
-<div class="container">
-  <header>
-    <h1>Google Translate</h1>
-  </header>
-  <main>
-    <div class="input-area">
-      <h1>Simplificación textual</h1>
-        <form (ngSubmit)="submitForm()">
-          <textarea type="text" [(ngModel)]="textInput" placeholder="Enter text to translate..." name="inputext"></textarea>
-          <label>
-            <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" value="1"> Sintáctica
-          </label>
-          <label>
-            <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" value="2"> Léxica
-          </label>
-          <label>
-            <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" value="3"> Resumen
-          </label>
-          <button type="submit">Enviar</button>
-        </form>
 
-        <p>{{respuesta}}</p>
-    </div>
-    <div class="output-area">
-      <textarea id="translated-text" readonly></textarea>
-    </div>
-  </main>
+
+<div class="topbar">
+  <div id="barra">
+  </div>
+
+  <a href="https://www.ucm.es/" title="Universidad Complutense de Madrid">
+    <img src="https://biblioteca.ucm.es/data/cont/docs/60-2016-09-20-Marca%20UCM%20Secundaria%20logo%20negro%20RGB.jpg" 
+    alt="ucm" title="Universidad Complutense de Madrid" style="width:20%;height:20%;margin: 2%;" >
+  </a>
+  <a href="https://informatica.ucm.es/" title="Facultad de Informática de Universidad Complutense de Madrid">
+    <img src="https://informatica.ucm.es/data/cont/media/www/pag-78821/escudofdigrande.png" 
+    alt="ucm" title="Facultad de Informática" style="width:5%;height:5%;margin: 2%;" align="right">
+  </a>
 </div>
+<header>
+  <h1>Sistema de simplificación de textos en español</h1>
+</header>
+<div class="container">
+  <div class="input-area">
+    <h3 style="margin-bottom: 5px;">Texto a simplificar</h3>
+      <form (ngSubmit)="submitForm()">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" value="1"> Sintáctica
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" value="2"> Léxica
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" value="3"> Resumen
+        </label>
+        <div class="textarea-container">
+          <textarea type="text" [(ngModel)]="textInput" (input)="countWords()" [disabled]="isLimitReached"
+          placeholder="Introducir texto para simplificar..." name="inputext">      
+          </textarea>          
+          <div class="word-count">{{ letterCount }} / 5000</div>
+        </div>
+        <button type="submit" >Simplificar</button>
+      </form> 
+
+      <p>{{respuesta}}</p>
+  </div>
+  <div class="output-area">
+    <h3 style="margin-bottom: 5px;">Texto simplificado</h3>
+    <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly></textarea>
+  </div>
+
+</div>
+
+
 
 
