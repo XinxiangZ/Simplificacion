@@ -31,7 +31,8 @@ def query_Cross(payload):
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST', 'OPTIONS'])
+
+@app.route('/api', methods=['POST', 'OPTIONS'])
 
 def procesar_datos():
 

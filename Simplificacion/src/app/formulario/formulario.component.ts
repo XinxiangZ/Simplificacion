@@ -37,7 +37,7 @@ export class FormularioComponent {
     console.log(this.selectedOptionSintactica)
     console.log(this.selectedOptionLexica)
     console.log(this.selectedOptionResumen)
-    this.http.post<any>('http://127.0.0.1:5000', { 
+    this.http.post<any>('https://simplificacion.pythonanywhere.com//api', { 
       textInput: this.textInput,
       selectedOptionSintactica: this.selectedOptionSintactica,
       selectedOptionLexica: this.selectedOptionLexica,
