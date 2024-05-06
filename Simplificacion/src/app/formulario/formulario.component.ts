@@ -21,10 +21,10 @@ export class FormularioComponent {
 
   constructor(private http: HttpClient) { }
 
-  textInput: string = '';
-  selectedOptionSintactica: string = '';
-  selectedOptionLexica: string = '';
-  selectedOptionResumen: string = '';
+  textInput: string = "";
+  selectedOptionSintactica: boolean = false;
+  selectedOptionLexica: boolean = false;
+  selectedOptionResumen: boolean = false;
   
   respuesta: any="";
 
@@ -33,7 +33,11 @@ export class FormularioComponent {
 
   submitForm() {
 
-    this.http.post<any>('https://laoxin.pythonanywhere.com/', { 
+    console.log(this.textInput)
+    console.log(this.selectedOptionSintactica)
+    console.log(this.selectedOptionLexica)
+    console.log(this.selectedOptionResumen)
+    this.http.post<any>('http://127.0.0.1:5000', { 
       textInput: this.textInput,
       selectedOptionSintactica: this.selectedOptionSintactica,
       selectedOptionLexica: this.selectedOptionLexica,

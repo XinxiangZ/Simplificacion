@@ -45,35 +45,37 @@ def procesar_datos():
 
         data = request.json
         text_input = data.get('textInput')
-        selected_option = data.get('selectedOption')
+        selectedOptionSintactica = data.get("selectedOptionSintactica")
+        selectedOptionLexica = data.get("selectedOptionLexica")
+        selectedOptionResumen = data.get("selectedOptionResumen")
         
-        if selected_option=="1":
-            
-             output = query_mt5({
+        respuesta=text_input
+        
+        if selectedOptionSintactica == True and selectedOptionLexica == False and selectedOptionResumen == False:
+            output = query_mt5({
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
-             respuesta = output[0]
-                  
-        elif selected_option=="2":
-            
-             output = query_Clmt5({
+            respuesta = output[0]
+            print(1)
+             
+        elif selectedOptionSintactica == False and selectedOptionLexica == True and selectedOptionResumen == False:
+            output = query_Clmt5({
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
-             respuesta = output[0]
-        
-        elif selected_option=="3":
+            respuesta = output[0]
+            print(2)
             
+        elif selectedOptionSintactica == False and selectedOptionLexica == False and selectedOptionResumen == True:
             output = query_Cross({
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
             })
             respuesta = {"generated_text": output[0]["summary_text"]}
+            print(3)
             
-            
-        elif selected_option=="4":
-            
+        elif selectedOptionSintactica == True and selectedOptionLexica == True and selectedOptionResumen == False:
             output1 = query_mt5({
 	        "inputs": text_input,
             "parameters": {"max_length": 100,"num_beams" : 4},
@@ -87,11 +89,10 @@ def procesar_datos():
             
             
             respuesta = output[0]
-        
+            print(4)
             
-        elif selected_option=="5":
+        elif selectedOptionSintactica == True and selectedOptionLexica == False and selectedOptionResumen == True:
             
-             
             output1 = query_Cross({
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
@@ -103,8 +104,9 @@ def procesar_datos():
             })
 
             respuesta = output[0]
-            
-        elif selected_option=="6":
+            print(5)
+      
+        elif selectedOptionSintactica == False and selectedOptionLexica == True and selectedOptionResumen == True:
             
             output1 = query_Cross({
 	        "inputs": text_input,
@@ -116,9 +118,10 @@ def procesar_datos():
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
             respuesta = output[0]
-                
-        elif selected_option=="7":
+            print(6)
             
+        elif selectedOptionLexica == True and selectedOptionSintactica ==True and selectedOptionResumen == True:
+        
             output1 = query_Cross({
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
@@ -134,7 +137,7 @@ def procesar_datos():
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
             respuesta = output[0]
-
+            print(7)
        
         
 
