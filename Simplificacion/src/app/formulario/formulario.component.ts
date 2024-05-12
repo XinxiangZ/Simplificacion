@@ -29,6 +29,7 @@ export class FormularioComponent {
   respuesta: any="";
   respuesta2:any="";
   respuesta3:any="";
+  respuesta4:any="";
 
   letterCount: number = 0;
   isLimitReached: boolean = false;
@@ -55,11 +56,12 @@ export class FormularioComponent {
 
       }else if(response.num_res==2){
         this.respuesta2= response.text_1
-        this.respuesta3=""
+        this.respuesta3=response.text_2
 
       }else if(response.num_res==3){
         this.respuesta2= response.text_1
         this.respuesta3= response.text_2
+        this.respuesta4= response.text_3
         
       }
   

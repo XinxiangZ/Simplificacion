@@ -83,13 +83,17 @@ def procesar_datos():
             "parameters": {"max_length": 100,"num_beams" : 4},
             }) 
             
+            output2 = query_Clmt5({
+	        "inputs": text_input,
+            "parameters": {"max_length": 100,"num_beams" : 4},
+            })
             
             output = query_Clmt5({
 	        "inputs": output1[0]["generated_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
             
-            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["generated_text"]}
+            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["generated_text"],"text_2":output2[0]["generated_text"]}
             print(4)
             
         elif selectedOptionSintactica == True and selectedOptionLexica == False and selectedOptionResumen == True:
@@ -98,13 +102,18 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
             })
+            
+            output2 = query_mt5({
+	        "inputs": text_input,
+            "parameters": {"max_length": 100,"num_beams" : 4},
+            })
 
             output = query_mt5({
 	        "inputs": output1[0]["summary_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
 
-            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"]}
+            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"],"text_2":output2[0]["generated_text"]}
             print(5)
       
         elif selectedOptionSintactica == False and selectedOptionLexica == True and selectedOptionResumen == True:
@@ -113,12 +122,17 @@ def procesar_datos():
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
             })
+            
+            output = query_Clmt5({
+	        "inputs": text_input,
+            "parameters": {"max_length": 100,"num_beams" : 4},
+            })
              
             output = query_Clmt5({
 	        "inputs": output1[0]["summary_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
-            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"]}
+            respuesta = {"num_res":2,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"],"text_2":output2[0]["generated_text"]}
             print(6)
             
         elif selectedOptionLexica == True and selectedOptionSintactica ==True and selectedOptionResumen == True:
@@ -126,6 +140,16 @@ def procesar_datos():
             output1 = query_Cross({
 	        "inputs": text_input,
             "parameters": {"max_length":84,"no_repeat_ngram_size":2,"num_beams":4,"decoder_start_token_id":250003},
+            })
+            
+            output3 = query_mt5({
+	        "inputs": text_input,
+            "parameters": {"max_length": 100,"num_beams" : 4},
+            })
+            
+            output4 = query_Clmt5({
+	        "inputs": text_input,
+            "parameters": {"max_length": 100,"num_beams" : 4},
             })
             
             output2 = query_mt5({
@@ -137,7 +161,7 @@ def procesar_datos():
 	        "inputs": output2[0]["generated_text"],
             "parameters": {"max_length": 100,"num_beams" : 4},
             })
-            respuesta = {"num_res":3,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"],"text_2":output2[0]["generated_text"]}
+            respuesta = {"num_res":3,"generated_text": output[0]["generated_text"],"text_1":output1[0]["summary_text"],"text_2":output3[0]["generated_text"],"text_3":output4[0]["generated_text"]}
             print(7)
        
         
