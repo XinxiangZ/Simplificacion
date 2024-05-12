@@ -59,12 +59,14 @@
   
     <div class="output-area" *ngIf="sintacticaSelect">
       <h3 style="margin-bottom: 5px;">Simplificación Sintáctica</h3>
-      <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta3}}</textarea>
+      <textarea id="translated-text" *ngIf="!resumenSelect" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta2}}</textarea>
+      <textarea id="translated-text" *ngIf="resumenSelect" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta3}}</textarea>
     </div>
   
     <div class="output-area" *ngIf="lexicaSelect">
       <h3 style="margin-bottom: 5px;">Simplificación Léxica</h3>
-      <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta4}}</textarea>
+      <textarea id="translated-text" *ngIf="(!resumenSelect && sintacticaSelect) || (resumenSelect && !sintacticaSelect)" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta3}}</textarea>
+      <textarea id="translated-text" *ngIf="resumenSelect && sintacticaSelect" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta4}}</textarea>
     </div>
 
 

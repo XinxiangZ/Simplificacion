@@ -58,9 +58,9 @@ export class FormularioComponent {
       selectedOptionResumen: this.selectedOptionResumen
     }).subscribe(response => {
 
-      this.resumenSelect=this.selectedOptionSintactica
-      this.sintacticaSelect=this.selectedOptionLexica
-      this.lexicaSelect=this.selectedOptionResumen
+      this.resumenSelect=this.selectedOptionResumen
+      this.sintacticaSelect=this.selectedOptionSintactica
+      this.lexicaSelect=this.selectedOptionLexica
 
       this.respuesta = response.generated_text;
 
