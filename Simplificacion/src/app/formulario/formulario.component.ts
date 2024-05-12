@@ -40,7 +40,7 @@ export class FormularioComponent {
     console.log(this.selectedOptionSintactica)
     console.log(this.selectedOptionLexica)
     console.log(this.selectedOptionResumen)
-    this.http.post<any>('http://127.0.0.1:5000/api', { 
+    this.http.post<any>('https://simplificacion.pythonanywhere.com/api', { 
       textInput: this.textInput,
       selectedOptionSintactica: this.selectedOptionSintactica,
       selectedOptionLexica: this.selectedOptionLexica,
@@ -53,10 +53,12 @@ export class FormularioComponent {
 
         this.respuesta2=""
         this.respuesta3=""
+        this.respuesta4=""
 
       }else if(response.num_res==2){
         this.respuesta2= response.text_1
         this.respuesta3=response.text_2
+        this.respuesta4=""
 
       }else if(response.num_res==3){
         this.respuesta2= response.text_1
