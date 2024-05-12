@@ -2,13 +2,14 @@ import { Component , Input, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';  
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [FormsModule,HttpClientModule],
+  imports: [FormsModule,HttpClientModule, CommonModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
@@ -25,7 +26,14 @@ export class FormularioComponent {
   selectedOptionSintactica: boolean = false;
   selectedOptionLexica: boolean = false;
   selectedOptionResumen: boolean = false;
-  
+
+  masDeUnaOpcion: boolean = false;
+  resumenSelect:boolean = false;
+  sintacticaSelect:boolean = false;
+  lexicaSelect:boolean = false;
+
+  isProcessing: boolean = false;
+
   respuesta: any="";
   respuesta2:any="";
   respuesta3:any="";
@@ -40,6 +48,9 @@ export class FormularioComponent {
     console.log(this.selectedOptionSintactica)
     console.log(this.selectedOptionLexica)
     console.log(this.selectedOptionResumen)
+
+    this.isProcessing = true
+
     this.http.post<any>('https://simplificacion.pythonanywhere.com/api', { 
       textInput: this.textInput,
       selectedOptionSintactica: this.selectedOptionSintactica,
@@ -47,20 +58,27 @@ export class FormularioComponent {
       selectedOptionResumen: this.selectedOptionResumen
     }).subscribe(response => {
 
+      this.resumenSelect=this.selectedOptionSintactica
+      this.sintacticaSelect=this.selectedOptionLexica
+      this.lexicaSelect=this.selectedOptionResumen
+
       this.respuesta = response.generated_text;
 
-      if(response.num_res==1){
+      this.isProcessing = false
 
+      if(response.num_res==1){
         this.respuesta2=""
         this.respuesta3=""
         this.respuesta4=""
 
       }else if(response.num_res==2){
+        this.masDeUnaOpcion=true
         this.respuesta2= response.text_1
         this.respuesta3=response.text_2
         this.respuesta4=""
 
       }else if(response.num_res==3){
+        this.masDeUnaOpcion=true
         this.respuesta2= response.text_1
         this.respuesta3= response.text_2
         this.respuesta4= response.text_3

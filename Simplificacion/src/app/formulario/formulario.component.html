@@ -36,18 +36,35 @@
         <button type="submit" >Simplificar</button>
       </form> 
 
-      <p>{{respuesta2}}</p>
-      <p>{{respuesta3}}</p>
-      <p>{{respuesta4}}</p>
-
   </div>
   <div class="output-area">
     <h3 style="margin-bottom: 5px;">Texto simplificado</h3>
-    <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{ respuesta }}</textarea>
+    <textarea id="translated-text" *ngIf="!isProcessing" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{ respuesta }}
+    </textarea>
+    <textarea id="translated-text" *ngIf="isProcessing" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>Procesando...
+    </textarea>
+
   </div>
 
+
 </div>
-
-
+<header>
+<h2 *ngIf="masDeUnaOpcion">Cambios realizados por cada tipo de simplificación</h2>
+</header>
+  <div class="container" *ngIf="masDeUnaOpcion">
+    <div class="output-area" *ngIf="resumenSelect">
+      <h3 style="margin-bottom: 5px;">Resumen</h3>
+      <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta2}}</textarea>
+    </div>
+  
+    <div class="output-area" *ngIf="sintacticaSelect">
+      <h3 style="margin-bottom: 5px;">Simplificación Sintáctica</h3>
+      <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta3}}</textarea>
+    </div>
+  
+    <div class="output-area" *ngIf="lexicaSelect">
+      <h3 style="margin-bottom: 5px;">Simplificación Léxica</h3>
+      <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta4}}</textarea>
+    </div>
 
 
