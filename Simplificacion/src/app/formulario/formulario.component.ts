@@ -27,6 +27,7 @@ export class FormularioComponent {
   selectedOptionLexica: boolean = false;
   selectedOptionResumen: boolean = false;
 
+  hayOpcion: boolean = true;
   masDeUnaOpcion: boolean = false;
   resumenSelect:boolean = false;
   sintacticaSelect:boolean = false;
@@ -65,7 +66,10 @@ export class FormularioComponent {
       this.respuesta = response.generated_text;
 
       this.isProcessing = false
-
+      
+      if(!this.selectedOptionResumen && !this.selectedOptionSintactica && !this.selectedOptionLexica){
+        this.hayOpcion = false
+      }
       if(response.num_res==1){
         this.respuesta2=""
         this.respuesta3=""

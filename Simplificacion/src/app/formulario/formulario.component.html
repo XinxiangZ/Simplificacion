@@ -21,29 +21,30 @@
     <h3 style="margin-bottom: 5px;">Texto a simplificar</h3>
       <form (ngSubmit)="submitForm()">
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1"> Sintáctica
+          <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" title="Selección esta opción para realizar la Simplificación Sintática"> Sintáctica
         </label>
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" > Léxica
+          <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" title="Selección esta opción para realizar la Simplificación Léxica"> Léxica
         </label>
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" > Resumen
+          <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" title="Selección esta opción para realizar el resumen del texto"> Resumen
         </label>
         <div class="textarea-container">
           <textarea type="text" [(ngModel)]="textInput" (input)="countWords()" [disabled]="isLimitReached" placeholder="Introducir texto para simplificar..." name="inputext"></textarea>          
           <div class="word-count">{{ letterCount }} / 5000</div>
         </div>
-        <button type="submit" >Simplificar</button>
+        <button type="submit" title="Pulsar este botón para simplificar el texto introducido">Simplificar</button>
       </form> 
 
   </div>
   <div class="output-area">
     <h3 style="margin-bottom: 5px;">Texto simplificado</h3>
-    <textarea id="translated-text" *ngIf="!isProcessing" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{ respuesta }}
+    <textarea id="translated-text" *ngIf="!isProcessing && hayOpcion" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{ respuesta }}
     </textarea>
-    <textarea id="translated-text" *ngIf="isProcessing" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>Procesando...
+    <textarea id="translated-text" *ngIf="isProcessing && hayOpcion" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>Procesando...
     </textarea>
-
+    <textarea id="translated-text" *ngIf="!hayOpcion" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>Por favor, elija una opción antes de pulsar el botón de simplificar.
+    </textarea>
   </div>
 
 
@@ -51,7 +52,7 @@
 <header>
 <h2 *ngIf="masDeUnaOpcion">Cambios realizados por cada tipo de simplificación</h2>
 </header>
-  <div class="container" *ngIf="masDeUnaOpcion">
+  <div class="container2" *ngIf="masDeUnaOpcion">
     <div class="output-area" *ngIf="resumenSelect">
       <h3 style="margin-bottom: 5px;">Resumen</h3>
       <textarea id="translated-text" style="margin-top: 3.5%;background-color: #f5f5f5;" readonly>{{respuesta2}}</textarea>

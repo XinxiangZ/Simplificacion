@@ -35,6 +35,19 @@ body {
   .container {
     max-width: 90%;
     margin: 20px auto;
+    background-color: #f0fbff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; Adjust to center or flex-end if needed */
+    flex-flow: row nowrap;
+  }
+
+  .container2 {
+    max-width: 90%;
+    margin: 20px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
