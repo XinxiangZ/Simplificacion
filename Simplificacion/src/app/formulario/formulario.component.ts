@@ -71,6 +71,7 @@ export class FormularioComponent {
       
 
       if(response.num_res==1){
+        this.masDeUnaOpcion=false
         this.respuesta2=""
         this.respuesta3=""
         this.respuesta4=""
