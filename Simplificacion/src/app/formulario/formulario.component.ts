@@ -67,9 +67,9 @@ export class FormularioComponent {
 
       this.isProcessing = false
       
-      if(!this.selectedOptionResumen && !this.selectedOptionSintactica && !this.selectedOptionLexica){
-        this.hayOpcion = false
-      }
+      this.hayOpcion = this.selectedOptionResumen || this.selectedOptionSintactica || this.selectedOptionLexica
+      
+
       if(response.num_res==1){
         this.respuesta2=""
         this.respuesta3=""
