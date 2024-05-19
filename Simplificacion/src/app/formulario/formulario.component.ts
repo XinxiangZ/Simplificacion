@@ -1,4 +1,4 @@
-import { Component , Input, Output, EventEmitter } from '@angular/core';
+import { Component , OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormsModule } from '@angular/forms';
@@ -18,9 +18,21 @@ import { BrowserModule } from '@angular/platform-browser';
   providedIn: 'root'
 })
 
-export class FormularioComponent {
+export class FormularioComponent implements OnInit{
 
   constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    
+    console.log("Oninit")
+    this.textInput = "";
+    this.selectedOptionSintactica = true;
+    this.selectedOptionLexica = true;
+    this.selectedOptionResumen = true;
+    this.open();
+  }
+
+
 
   textInput: string = "";
   selectedOptionSintactica: boolean = false;
@@ -43,6 +55,21 @@ export class FormularioComponent {
   letterCount: number = 0;
   isLimitReached: boolean = false;
 
+  open(){
+    console.log("llamada")
+    this.http.post<any>('http://127.0.0.1:5000/', { 
+      textInput: this.textInput,
+      selectedOptionSintactica: this.selectedOptionSintactica,
+      selectedOptionLexica: this.selectedOptionLexica,
+      selectedOptionResumen: this.selectedOptionResumen
+    }).subscribe(response => {
+
+
+    })
+
+  }
+
+
   submitForm() {
 
     console.log(this.textInput)
@@ -52,7 +79,7 @@ export class FormularioComponent {
 
     this.isProcessing = true
 
-    this.http.post<any>('https://simplificacion.pythonanywhere.com/api', { 
+    this.http.post<any>('http://127.0.0.1:5000/api', { 
       textInput: this.textInput,
       selectedOptionSintactica: this.selectedOptionSintactica,
       selectedOptionLexica: this.selectedOptionLexica,
@@ -68,6 +95,10 @@ export class FormularioComponent {
       this.isProcessing = false
       
       this.hayOpcion = this.selectedOptionResumen || this.selectedOptionSintactica || this.selectedOptionLexica
+
+    if(response.fallo==1){
+      console.log("fallo")
+    }
       
 
       if(response.num_res==1){
