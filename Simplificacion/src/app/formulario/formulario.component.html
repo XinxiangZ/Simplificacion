@@ -22,13 +22,13 @@
     <h3 style="margin-bottom: 5px;">Texto a simplificar</h3>
       <form (ngSubmit)="submitForm()">
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" title="Selección esta opción para realizar la Simplificación Sintática"> Sintáctica
+          <input type="checkbox" [(ngModel)]="selectedOptionSintactica" name="option1" title="Selección esta opción para realizar la Simplificación Sintática" checked> Sintáctica
         </label>
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" title="Selección esta opción para realizar la Simplificación Léxica"> Léxica
+          <input type="checkbox" [(ngModel)]="selectedOptionLexica" name="option2" title="Selección esta opción para realizar la Simplificación Léxica" checked> Léxica
         </label>
         <label>
-          <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" title="Selección esta opción para realizar el resumen del texto"> Resumen
+          <input type="checkbox" [(ngModel)]="selectedOptionResumen" name="option3" title="Selección esta opción para realizar el resumen del texto" checked> Resumen
         </label>
         <div class="textarea-container">
           <textarea type="text" [(ngModel)]="textInput" (input)="countWords()" [disabled]="isLimitReached" placeholder="Introducir texto para simplificar..." name="inputext"></textarea>          
