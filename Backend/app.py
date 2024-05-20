@@ -32,7 +32,7 @@ async def query_Cross(payload):
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST', 'OPTIONS'])
+@app.route('/open', methods=['POST', 'OPTIONS'])
 
 async def iniciar_modelo():
 
